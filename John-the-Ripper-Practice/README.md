@@ -4,41 +4,7 @@ A hands-on learning and lab-documentation repo for **John the Ripper (JtR)**, th
 
 > ⚠️ **Scope & Ethics:** Everything here was run against **hashes I generated myself** or **explicitly authorized practice targets** (e.g. local VMs, CTF platforms like TryHackMe/HackTheBox, or hashes created for this repo). This is a learning log, not a guide for attacking systems you don't own or have permission to test.
 
-## Why this repo
 
-I'm building this alongside my other security practice repos (see `Nmap-Practice-and-Learning`) to build a structured, evidence-backed record of offensive security fundamentals — this time focused on password security and cracking techniques rather than recon.
-
-## Repo structure
-
-```
-John-the-Ripper-Practice/
-├── README.md                    # this file — everything in one place
-└── screenshots/
-    ├── 01-installation/
-    ├── 02-basic-cracking/
-    ├── 03-wordlist-attacks/
-    ├── 04-rules-and-modes/
-    ├── 05-hash-formats/
-    └── 06-real-world-labs/
-```
-
-All screenshots referenced below use relative paths, e.g.:
-
-```markdown
-![Cracking MD5 hash with rockyou.txt](screenshots/03-wordlist-attacks/md5-rockyou-crack.png)
-```
-
-## Progress log
-
-| Date | Topic | Status |
-|------|-------|--------|
-| TBD  | Installation & setup | ⬜ Not started |
-| TBD  | Basic single-crack mode | ⬜ Not started |
-| TBD  | Wordlist attacks | ⬜ Not started |
-| TBD  | Rule-based mangling | ⬜ Not started |
-| TBD  | Hash format identification | ⬜ Not started |
-| TBD  | ZIP/Office doc cracking | ⬜ Not started |
-| TBD  | End-to-end lab | ⬜ Not started |
 
 ## Tools referenced
 
@@ -74,7 +40,7 @@ John the Ripper (JtR) is an **offline password cracking tool**. Unlike online br
 2. **JtR guesses plaintexts, hashes each guess, and compares.** If the guess's hash matches the target hash, the guess was the original password.
 3. **The "guessing strategy" is the attack mode** — this is what makes JtR fast or slow, thorough or shallow.
 
-## Attack modes (summary — full detail in `attack-modes.md`)
+## Attack modes 
 
 - **Single crack mode** — uses info about the account (username, GECOS fields) to build likely candidate passwords. Fast, good first pass.
 - **Wordlist mode** — tries every entry in a wordlist (e.g. `rockyou.txt`), optionally combined with **mangling rules** (appending numbers, leetspeak substitutions, capitalization changes).
@@ -94,51 +60,6 @@ John the Ripper (JtR) is an **offline password cracking tool**. Unlike online br
 -e 
 ---
 
-# Installation
-
-## Kali / Debian-based Linux (pre-installed on Kali)
-
-```bash
-sudo apt update
-sudo apt install john -y
-john --version
-```
-
-For the more feature-complete **Jumbo** community edition (more hash formats, GPU support):
-
-```bash
-sudo apt install john-data -y   # extra wordlists/rules if available
-# or build from source:
-git clone https://github.com/openwall/john -b bleeding-jumbo
-cd john/src
-./configure && make -s clean && make -sj4
-```
-
-## macOS
-
-```bash
-brew install john-jumbo
-```
-
-## Windows
-
-Download prebuilt binaries from https://www.openwall.com/john/ and run from the extracted `run/` folder, or use WSL with the Linux instructions above.
-
-## Verifying install
-
-```bash
-john --list=formats | head
-```
-
-This should print a long list of supported hash formats (`descrypt`, `md5crypt`, `NT`, `Raw-MD5`, `sha256crypt`, `zip`, `office`, etc).
-
-## Screenshot checklist
-
-- [ ] `john --version` output
-- [ ] `john --list=formats` output (truncated)
-- [ ] Confirming Jumbo vs core edition
--e 
----
 
 # Hash Formats
 
@@ -188,13 +109,7 @@ Then crack the resulting `.hash` file normally:
 john zip.hash
 ```
 
-## Screenshot checklist
 
-- [ ] `hashid` identifying a sample hash
-- [ ] `zip2john` / `office2john` extraction output
-- [ ] `john --list=formats` filtered to a relevant format
--e 
----
 
 # Attack Modes
 
@@ -250,14 +165,7 @@ john --restore
 2. `--wordlist` + `--rules` next (covers most real-world weak passwords).
 3. `--incremental` only for short hashes or when time budget allows.
 
-## Screenshot checklist
 
-- [ ] Single crack mode run + result
-- [ ] Wordlist mode run + result
-- [ ] Wordlist + rules run + result
-- [ ] `--show` output
--e 
----
 
 # Ethics & Scope
 
