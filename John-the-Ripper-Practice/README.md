@@ -213,7 +213,7 @@ testuser:5f4dcc3b5aa765d61d8327deb882cf99
 ```
 
 *(Screenshot: creating the hash file)*
-![Creating test hash](screenshots/02-basic-cracking/create-hash.png)
+![Creating test hash](screenshots/02-basic-cracking1.png)
 
 ## Cracking
 
@@ -222,7 +222,7 @@ john --format=Raw-MD5 hashes.txt
 ```
 
 *(Screenshot: john running against the hash)*
-![Single crack run](screenshots/02-basic-cracking/single-crack-run.png)
+![Single crack run](screenshots/02-basic-cracking2.png)
 
 ## Verifying
 
@@ -231,7 +231,7 @@ john --show --format=Raw-MD5 hashes.txt
 ```
 
 *(Screenshot: --show output confirming cracked password)*
-![Show cracked result](screenshots/02-basic-cracking/show-result.png)
+![Show cracked result](screenshots/02-basic-cracking3.png)
 
 ## Notes / lessons learned
 
@@ -256,7 +256,7 @@ done
 Compile into `hashes2.txt` in `user:hash` format.
 
 *(Screenshot: hash list created)*
-![Hash list](screenshots/03-wordlist-attacks/hash-list.png)
+![Hash list](screenshots/03-wordlist-attacks1.png)
 
 ## Locate/decompress rockyou.txt (Kali default location)
 
@@ -272,7 +272,7 @@ john --wordlist=/usr/share/wordlists/rockyou.txt --format=Raw-MD5 hashes2.txt
 ```
 
 *(Screenshot: wordlist attack in progress / results)*
-![Wordlist attack run](screenshots/03-wordlist-attacks/wordlist-run.png)
+![Wordlist attack run](screenshots/03-wordlist-attacks2.png)
 
 ## Results
 
@@ -281,7 +281,7 @@ john --show --format=Raw-MD5 hashes2.txt
 ```
 
 *(Screenshot: cracked results)*
-![Cracked results](screenshots/03-wordlist-attacks/results.png)
+![Cracked results](screenshots/03-wordlist-attacks3.png)
 
 ## Notes / lessons learned
 
@@ -309,7 +309,7 @@ EOF
 Generate hashes for mangled variants a person might actually pick (e.g. `Password1!`, `Welcome2024`) and save to `hashes3.txt`.
 
 *(Screenshot: base wordlist + generated hashes)*
-![Base wordlist and hashes](screenshots/04-rules-and-modes/setup.png)
+![Base wordlist and hashes](screenshots/04-rules-and-modes1.png)
 
 ## Run without rules (baseline — expect failures)
 
@@ -318,7 +318,7 @@ john --wordlist=base-words.txt --format=Raw-MD5 hashes3.txt
 ```
 
 *(Screenshot: baseline run — likely 0 cracked)*
-![Baseline no-rules run](screenshots/04-rules-and-modes/baseline-no-rules.png)
+![Baseline no-rules run](screenshots/04-rules-and-modes2.png)
 
 ## Run with rules enabled
 
@@ -327,7 +327,7 @@ john --wordlist=base-words.txt --rules --format=Raw-MD5 hashes3.txt
 ```
 
 *(Screenshot: rules run — more cracked)*
-![Rules-enabled run](screenshots/04-rules-and-modes/rules-run.png)
+![Rules-enabled run](screenshots/04-rules-and-modes3.png)
 
 ## Notes / lessons learned
 
@@ -354,7 +354,7 @@ cat zip.hash
 ```
 
 *(Screenshot: zip2john output)*
-![zip2john extraction](screenshots/05-hash-formats/zip2john-output.png)
+![zip2john extraction](screenshots/05-hash-formats1.png)
 
 ## Crack it
 
@@ -363,7 +363,7 @@ john --wordlist=/usr/share/wordlists/rockyou.txt zip.hash
 ```
 
 *(Screenshot: cracking run + result)*
-![ZIP crack run](screenshots/05-hash-formats/zip-crack-run.png)
+![ZIP crack run](screenshots/05-hash-formats2.png)
 
 ## Repeat for a protected Office document (optional)
 
@@ -373,7 +373,7 @@ john --wordlist=/usr/share/wordlists/rockyou.txt office.hash
 ```
 
 *(Screenshot: office2john + crack)*
-![Office doc crack](screenshots/05-hash-formats/office-crack.png)
+![Office doc crack](screenshots/05-hash-formats3.png)
 
 ## Notes / lessons learned
 
